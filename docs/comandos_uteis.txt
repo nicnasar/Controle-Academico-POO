@@ -1,0 +1,22 @@
+# Passos para rodar o projeto após clonar o repositório:
+
+1. Ative o ambiente virtual (PowerShell):
+   . .venv\Scripts\Activate.ps1
+
+2. Instale as dependências:
+   pip install -r requirements.txt
+   # ou, se o arquivo estiver em src:
+   pip install -r src/requirements.txt
+
+3. (Opcional) Se adicionar novas bibliotecas, gere/atualize o requirements.txt:
+   pip freeze > requirements.txt
+
+4. Rode o sistema principal:
+   python src/main.py
+
+5. (Se for usar a interface web):
+   streamlit run src/interface/interface_web.py
+
+# Repita os passos 1, 2, 4 e 5 toda vez que for rodar o projeto em uma nova sessão.
+
+
