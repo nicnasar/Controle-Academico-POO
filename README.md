@@ -2,6 +2,10 @@
 
 Repositório contendo arquivos relacionados ao trabalho de POO.
 
+adicionar criar venv
+instalar as bibliotecas no venv
+
+
 ## Passos para rodar o projeto após clonar o repositório:
 
 ### 1. Ative o ambiente virtual (PowerShell):
