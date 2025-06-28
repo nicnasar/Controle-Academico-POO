@@ -8,8 +8,11 @@ instalar as bibliotecas no venv
 
 ## Passos para rodar o projeto após clonar o repositório:
 
+### 0. Habilite a permissão do PowerShell:
+`Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+
 ### 1. Ative o ambiente virtual (PowerShell):
-`. .venv\Scripts\Activate.ps1`
+`.venv\Scripts\Activate`
 
 ### 2. Instale as dependências:
 `pip install -r requirements.txt`
