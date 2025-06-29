@@ -1,6 +1,6 @@
-from src.MODELOS.alunoMODELO import AlunoModelo
+from MODELOS.alunoMODELO import AlunoModelo
 # da pasta MODELOS, importar do arquivo alunoMODELO a classe AlunoModelo
-from src.DAO.alunoDAO import AlunoDao
+from DAO.alunoDAO import AlunoDao
 
 
 class ControleAluno:
@@ -10,8 +10,14 @@ class ControleAluno:
         
     def cadastrar_aluno(self, aluno: AlunoModelo):
         try:
-            AlunoDao().inserir_aluno(aluno)
+            self.aluno.inserir_aluno(aluno)
             return True
             
         except:
             raise Exception("Erro ao cadastrar aluno.")
+
+    def listar_alunos(self):
+        try:
+            return self.aluno.listar_alunos()
+        except:
+            raise Exception("Erro ao listar alunos.")
