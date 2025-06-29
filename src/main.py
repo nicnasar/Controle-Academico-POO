@@ -19,10 +19,10 @@ manipular_alunos = ControleAluno(AlunoDao(nome_banco))
 # manipular_alunos.cadastrar_aluno(aluno)
 
 # criar instância disciplina
-disciplina = DisciplinaModelo(67, "A", 45, "hahahaha")
+disciplina = DisciplinaModelo(2, None, None, None)
 manipular_disciplinas = ControleDisciplina(DisciplinaDao(nome_banco))
 
-manipular_disciplinas.cadastrar_disciplina(disciplina)
+manipular_disciplinas.atualizar_disciplina(disciplina)
 
 """
 alunos = manipular_alunos.listar_alunos()

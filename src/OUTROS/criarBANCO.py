@@ -24,8 +24,8 @@ tabelas_sqlite = [
         Matricula (
             codigo_disciplina INTEGER NOT NULL,
             cpf_aluno INTEGER UNIQUE NOT NULL,
-            data_matricula INTEGER NOT NULL,
-            horario_matricula INTEGER NOT NULL
+            data_matricula TEXT NOT NULL, 
+            horario_matricula TEXT NOT NULL
         );"""
 ]
 

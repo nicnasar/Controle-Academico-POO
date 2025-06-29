@@ -16,5 +16,4 @@ class Validar:
 
             for codigo in codigos:
                 if codigo_disciplina == codigo:
-                    print("A disciplina possui o mesmo código de outra já cadastrada.")
                     return codigo

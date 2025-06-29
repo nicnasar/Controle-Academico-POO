@@ -10,6 +10,7 @@ class AlunoDao:
         self.caminho_banco = caminho_banco
     
     
+    
     def inserir_aluno(self, aluno: AlunoModelo):
         conexao = sqlite3.connect(self.caminho_banco) # abre o banco de dados
         cursor = conexao.cursor() # cria um cursor

@@ -2,6 +2,8 @@ from MODELOS.disciplinasMODELO import DisciplinaModelo
 from DAO.disciplinasDAO import DisciplinaDao
 
 
+# saídas devem estar no CONTROLE, nada de bagunçar mais o DAO
+
 class ControleDisciplina:
     
     
@@ -13,9 +15,20 @@ class ControleDisciplina:
         try:
             # detalhe que self.disciplina != disciplina
             self.disciplina.cadastrar_disciplina(disciplina)
+            print("Disciplina cadastrada com sucesso!")
             return True
         
         except:
             print("Erro ao cadastrar disciplina.")
             return False
-            
+        
+        
+    def atualizar_disciplina(self, disciplina: DisciplinaModelo):
+        try:
+            self.disciplina.atualizar_disciplina(disciplina)
+            print("Disciplina atualizada com sucesso!")
+            return True
+        
+        except:
+            print("Erro ao atualizar disciplina.")
+            return False    

@@ -1,7 +1,7 @@
 
 # classes começam com letra maiúscula
 class DisciplinaModelo:
-    def __init__(self, codigo: int, nome: str, carga_horaria: int, nome_professor: str):
+    def __init__(self, codigo, nome, carga_horaria, nome_professor):
         self.codigo = codigo
         self.nome = nome
         self.carga_horaria = carga_horaria
