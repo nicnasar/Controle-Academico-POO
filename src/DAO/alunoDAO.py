@@ -3,8 +3,12 @@ import sqlite3
 from MODELOS.alunoMODELO import AlunoModelo
 
 class AlunoDao:
-    def __init__(self, caminho_banco): # função para conectar em um banco geral, sem precisar ficar escrevendo tudo de uma vez
-        self.caminho_banco =caminho_banco
+    
+    
+    def __init__(self, caminho_banco): 
+        # função para conectar em um banco geral, sem precisar ficar escrevendo tudo de uma vez
+        self.caminho_banco = caminho_banco
+    
     
     def inserir_aluno(self, aluno: AlunoModelo):
         conexao = sqlite3.connect(self.caminho_banco) # abre o banco de dados
@@ -14,17 +18,16 @@ class AlunoDao:
                 Aluno (nome, cpf, idade, email, endereco)
                 VALUES (?, ?, ?, ?, ?)
                 """, 
-                    (
+                (
                         # cada valor corresponde a uma interrogação
                         aluno.nome, 
                         aluno.CPF, 
                         aluno.idade, 
                         aluno.email, 
-                        aluno.endereco)
+                        aluno.endereco
+                    )
             )
         conexao.commit() # fecha o banco de dados
-    
-    
     
     
     def listar_alunos(self):

@@ -14,7 +14,7 @@ tabelas_sqlite = [
     """CREATE TABLE IF NOT EXISTS
         Aluno (
             nome TEXT NOT NULL,
-            cpf TEXT NOT NULL UNIQUE,
+            cpf INTEGER NOT NULL UNIQUE,
             idade INTEGER NOT NULL,
             email TEXT NOT NULL,
             endereco TEXT NOT NULL
@@ -23,9 +23,9 @@ tabelas_sqlite = [
     """CREATE TABLE IF NOT EXISTS
         Matricula (
             codigo_disciplina INTEGER NOT NULL,
-            cpf_aluno TEXT UNIQUE NOT NULL,
-            data_matricula TEXT NOT NULL,
-            horario_matricula TEXT NOT NULL
+            cpf_aluno INTEGER UNIQUE NOT NULL,
+            data_matricula INTEGER NOT NULL,
+            horario_matricula INTEGER NOT NULL
         );"""
 ]
 
