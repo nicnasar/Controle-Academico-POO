@@ -25,7 +25,7 @@ class ControleDisciplina:
         
     def atualizar_disciplina(self, disciplina: DisciplinaModelo):
         try:
-            self.disciplina.atualizar_disciplina(disciplina)
+            self.disciplina.atualizar_disciplina_dao(disciplina)
             print("Disciplina atualizada com sucesso!")
             return True
         

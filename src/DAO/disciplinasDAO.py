@@ -14,10 +14,10 @@ class DisciplinaDao:
         self.validar = Validar(caminho_banco)
             
             
-    # não permitir o usuário cadastrar alguma disciplina sem todos os campos preenchidos
+    # não permitir o usuário cadastrar alguma disciplina sem todos os campos preenchidos -- resolvido na interface
     def cadastrar_disciplina(self, disciplina: DisciplinaModelo):
         
-        if self.validar.check_disciplina(disciplina.codigo):
+        if self.validar.disciplina_existe(disciplina.codigo):
             return False
         # colocar futuramente qual o nome da disciplina
         
@@ -40,13 +40,21 @@ class DisciplinaDao:
         return True
     
 
-    def atualizar_disciplina(self, disciplina: DisciplinaModelo):    
-        # checar se a disciplina existe    
-        if self.validar.check_disciplina(disciplina.codigo):
-            return False
+    def atualizar_disciplina_dao(self, disciplina: DisciplinaModelo):    
         
+        # checar se a disciplina existe    
+        if self.validar.disciplina_existe(disciplina.codigo):
+            pass
+        else:
+            print("A disciplina não existe!")
+            return False
+                
+        disciplina = self.validar.valores_vazios(disciplina)
+        
+        # caso exista, prosseguir para a conexão com o banco
         conexao = sqlite3.connect(self.caminho_banco)
         cursor = conexao.cursor()
+        
         cursor.execute(
             """UPDATE Disciplina
                SET nome = ?, carga_horaria = ?, nome_professor = ?
