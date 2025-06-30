@@ -15,7 +15,7 @@ class Validar:
         cursor = conexao.cursor()
         
         # ir para a coluna "código"
-        cursor.execute("SELECT codgio FROM Disciplina")
+        cursor.execute("SELECT codigo FROM Disciplina")
         
         # criar uma lista com todos os códigos
         codigos = cursor.fetchall()
@@ -29,9 +29,10 @@ class Validar:
         conexao.close()
         return False        
         
+        
     def valores_vazios(self, disciplina: DisciplinaModelo):
         
-        print("Checando valores vazios")
+        # print("Checando valores vazios")
         # primeiro é melhor estabelecer uma conexão com o banco
         conexao = sqlite3.connect(self.caminho_banco)
         cursor = conexao.cursor()
@@ -62,9 +63,9 @@ class Validar:
             
             disciplina.nome_professor = nome_professor_atual[0]
             
-            
+        conexao.commit() 
         conexao.close()
-        print("Valores vazios checados.")
+        # print("Valores vazios checados.")
         
         return disciplina
         

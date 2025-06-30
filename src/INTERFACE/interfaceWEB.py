@@ -36,12 +36,10 @@ import streamlit as st
 
 st.title("Minha Interface Simples")
 
-valor = st.date_input("Digite uma data: ") # inteiro
+valor = st.number_input(label="Digite um numero: ", min_value=0) # inteiro
 
 if st.button("Enter"):
     print(valor, type(valor))
     st.success("Valor enviado! Veja o terminal.")
-    for item in valor.strftime("%d/%m/%Y").split("/"):
-        item = int(item) + 1
-        print(item, type(item))
+
     

@@ -7,3 +7,5 @@ class AlunoModelo:
         self.idade = idade
         self.email = email
         self.endereco = endereco
+        
+        

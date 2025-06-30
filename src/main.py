@@ -11,7 +11,7 @@ from CONTROLE.controleDISCIPLINAS import ControleDisciplina
 from CONTROLE.controleALUNOS import ControleAluno
 
 
-nome_banco = "src/controle_academico.db"
+nome_banco = "controle_academico.db"
 
 banco = CriarBanco(nome_banco)
 
@@ -22,13 +22,18 @@ banco = CriarBanco(nome_banco)
 
 # criar instância disciplina
 
-disciplina0 = DisciplinaModelo(85, "Soco", 7, "macrcekai")
-disciplina1 = DisciplinaModelo(68, "FELICIDADE", None, None)
+# disciplina0 = DisciplinaModelo(9, None, None, "Josias")
+# disciplina1 = DisciplinaModelo(6, "Geografia", 30, "Nikola Tesla")
 
 manipular_disciplinas = ControleDisciplina(DisciplinaDao(nome_banco))
 
-# manipular_disciplinas.cadastrar_disciplina(disciplina0)
-manipular_disciplinas.atualizar_disciplina(disciplina1)
+# manipular_disciplinas.atualizar_disciplina(disciplina0)
+
+# manipular_disciplinas.deletar_disciplina(disciplina0)
+
+# manipular_disciplinas.cadastrar_disciplina(disciplina1)
+
+manipular_disciplinas.listar_dados()
 
 """
 alunos = manipular_alunos.listar_alunos()

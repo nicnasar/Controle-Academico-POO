@@ -15,10 +15,10 @@ class DisciplinaDao:
             
             
     # não permitir o usuário cadastrar alguma disciplina sem todos os campos preenchidos -- resolvido na interface
-    def cadastrar_disciplina(self, disciplina: DisciplinaModelo):
+    def cadastrar_disciplina_dao(self, disciplina: DisciplinaModelo):
         
-        if self.validar.disciplina_existe(disciplina.codigo):
-            return False
+        # if self.validar.disciplina_existe(disciplina.codigo):
+            # return True
         # colocar futuramente qual o nome da disciplina
         
         conexao = sqlite3.connect(self.caminho_banco) # abre
@@ -36,6 +36,7 @@ class DisciplinaDao:
             )
         )
         conexao.commit() # fecha
+        conexao.close()
         
         return True
     
@@ -46,7 +47,7 @@ class DisciplinaDao:
         if self.validar.disciplina_existe(disciplina.codigo):
             pass
         else:
-            print("A disciplina não existe!")
+            print("Essa Disciplina não existe!")
             return False
                 
         disciplina = self.validar.valores_vazios(disciplina)
@@ -69,7 +70,57 @@ class DisciplinaDao:
         )
         
         conexao.commit()
+        conexao.close()
         return True
         
     
+    def remover_disciplina_dao(self, codigo):
+        
+        if self.validar.disciplina_existe(codigo):
+            pass
+        else:
+            print("Essa disciplina não existe!")
+            return False
+        
+        conexao = sqlite3.connect(self.caminho_banco)
+        cursor = conexao.cursor()
+        
+        cursor.execute("DELETE FROM Disciplina WHERE codigo = ?", (codigo,))
+        
+        conexao.commit()
+        conexao.close()
+        return True
+        
+        
+    def listar_disciplinas_dao(self):
+        
+        # abre o arquivo de disciplinas
+        with open(file="lista_disciplinas.csv", mode="w") as lista_disc:
+            
+            # conecta no banco de dados
+            conexao = sqlite3.connect(self.caminho_banco)
+            cursor = conexao.cursor()
+
+            # pega os dados
+            cursor.execute(
+                """
+                SELECT codigo, nome, carga_horaria, nome_professor
+                FROM Disciplina
+                """
+            )
+            
+            # cria uma lista contendo os itens do banco de dados
+            dados = cursor.fetchall()
+            
+            # cria o cabeçalho
+            lista_disc.write("codigo; nome; carga_horaria; nome_professor\n")
+            
+            # insere os dados na planilha
+            for linha in dados:
+                lista_disc.write(f"{linha[0]};{linha[1]};{linha[2]};{linha[3]}\n")
+            
+            conexao.commit()
+            conexao.close()
+            
+        return True
     

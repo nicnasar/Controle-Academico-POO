@@ -14,7 +14,7 @@ class ControleDisciplina:
     def cadastrar_disciplina(self, disciplina: DisciplinaModelo):
         try:
             # detalhe que self.disciplina != disciplina
-            self.disciplina.cadastrar_disciplina(disciplina)
+            self.disciplina.cadastrar_disciplina_dao(disciplina)
             print("Disciplina cadastrada com sucesso!")
             return True
         
@@ -24,11 +24,29 @@ class ControleDisciplina:
         
         
     def atualizar_disciplina(self, disciplina: DisciplinaModelo):
-        try:
-            self.disciplina.atualizar_disciplina_dao(disciplina)
+        
+        if self.disciplina.atualizar_disciplina_dao(disciplina):
             print("Disciplina atualizada com sucesso!")
             return True
         
-        except:
+        else:
             print("Erro ao atualizar disciplina.")
-            return False    
+            return False 
+        
+        
+    def deletar_disciplina(self, disciplina: DisciplinaModelo):
+        
+        if self.disciplina.remover_disciplina_dao(disciplina.codigo):
+            print("Disciplina deletada com sucesso!")
+            return True
+        else:
+            print("Erro ao deletar disciplina.")
+            return False
+        
+    def listar_dados(self):
+        
+        if self.disciplina.listar_disciplinas_dao():
+            print("Dados listados com sucesso!")
+        
+        else:
+            print("Erro ao listar os dados.")
