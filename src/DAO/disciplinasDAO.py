@@ -17,8 +17,8 @@ class DisciplinaDao:
     # não permitir o usuário cadastrar alguma disciplina sem todos os campos preenchidos -- resolvido na interface
     def cadastrar_disciplina_dao(self, disciplina: DisciplinaModelo):
         
-        # if self.validar.disciplina_existe(disciplina.codigo):
-            # return True
+        if self.validar.disciplina_existe(disciplina.codigo):
+            return True
         # colocar futuramente qual o nome da disciplina
         
         conexao = sqlite3.connect(self.caminho_banco) # abre
