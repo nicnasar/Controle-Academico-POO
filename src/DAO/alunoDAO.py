@@ -30,6 +30,7 @@ class AlunoDao:
                     )
             )
         conexao.commit() # fecha o banco de dados
+        conexao.close()
     
     
     def listar_alunos(self):
