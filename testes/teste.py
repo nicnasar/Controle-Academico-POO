@@ -53,7 +53,16 @@ print(validar_CEP(95555000))'''
 Preciso verificar se o cep retorna um endereço
 
 """
-# teste 04
+# teste 04 função de atualizar aluno
+
+import sqlite3
+import sys
+import os
+sys.path.append(os.path.abspath(".."))
+
+from MODELOS.alunoMODELO import AlunoModelo
+
+sys.path.append(os.path.abspath(".."))
 
 def atualizar_aluno(self, aluno: AlunoModelo): # dentro de alunoDAO
 
@@ -91,3 +100,24 @@ def atualizar_aluno(self, aluno: AlunoModelo): # dentro de alunoDAO
     conexao.commit()
     conexao.close()
     return True
+
+
+# teste 05
+
+'''def deletar_aluno(self, cpf):
+    conexao = sqlite3.connect(self.caminho_banco)
+    cursor = conexao.cursor()
+
+    cursor.execute("SELECT * FROM Aluno WHERE cpf = ?", (cpf,)) 
+    if not cursor.fetchone():
+        print("Aluno não encontrado no banco de dados!")
+        conexao.close()
+        return False
+
+    cursor.execute("DELETE FROM Aluno WHERE cpf = ?", (cpf,))
+    conexao.commit()
+    conexao.close()
+    print("Aluno removido com sucesso!")
+    return True
+'''
+
