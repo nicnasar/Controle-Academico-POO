@@ -14,9 +14,16 @@ print('Endereço',dados['logradouro'])'''
 import requests
 import json
 
+
+
 def validar_CEP(cep):
 
-    #cep = input(('Digite o seu CEP (sem pontuações): '))
+    # cep = input(('Digite o seu CEP (sem pontuações): '))
+
+    if len(str(cep)) != 8:
+        print('CEP inválido.')
+
+        return False 
 
     link = f'https://viacep.com.br/ws/{cep}/json/'
 
@@ -24,10 +31,19 @@ def validar_CEP(cep):
 
     dados = json.loads(resposta)
 
+    if dados['logradouro'] == '':
+        logradouro = input(str('Digite o seu endereço:'))
+    if dados['bairro'] == '':
+        bairro = input(str('Digite'))
+
     print(dados)
     # print('Endereço',dados['logradouro'])
 
     return f'{dados['logradouro']},{dados['cep']},{dados['bairro']}, {dados['localidade']},{dados['estado']}'
 
-
 print(validar_CEP(29070220))
+
+"""
+Preciso verificar se o cep retorna um endereço
+
+"""
