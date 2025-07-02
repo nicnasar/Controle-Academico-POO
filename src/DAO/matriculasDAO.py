@@ -33,5 +33,86 @@ class MatriculaDao:
             return False
         # na interface: "while(not matricular) ... if "sair": break"
         
+        conexao = sqlite3.connect(self.caminho_banco)
+        cursor = conexao.cursor()
         
+        cursor.execute(
+            """INSERT INTO
+                Matricula(
+                    codigo_disciplina,
+                    cpf_aluno,
+                    data_matricula,
+                    horario_matricula
+                    )
+                VALUES (?, ?, ?, ?)
+            """,
+            (
+                matricula.codigo_disciplina,
+                matricula.cpf_aluno,
+                matricula.data_matricula,
+                matricula.horario_matricula
+            )
+        )
+        
+        conexao.commit()
+        conexao.close()
+        
+        return True
+    
+    
+    def cancelar_matricula_dao(self, matricula: MatriculaModelo):
+        
+        # se a disciplina não existe, retornar falso, pedir para cadastrar
+        if not self.validar_disciplina.disciplina_existe(matricula.codigo_disciplina):
+            return False
+        
+        # se o cpf do aluno não está no banco, sair
+        if not self.validar_aluno.cpf_igual(matricula.cpf_aluno):
+            return False
+    
+        conexao = sqlite3.connect(self.caminho_banco)
+        cursor = conexao.cursor()
+        
+        cursor.execute("DELETE FROM Matricula WHERE codigo_disciplina = ?", (matricula.codigo_disciplina,))
+        
+        conexao.commit()
+        conexao.close()
+        return True
+        
+        
+    def listar_matriculas_dao(self):
+        
+        with open(file="lista_matriculas.csv", mode="w") as lista_mat:
+            
+            # conecta no banco de dados
+            conexao = sqlite3.connect(self.caminho_banco)
+            cursor = conexao.cursor()
+
+            # pega os dados
+            cursor.execute(
+                """
+                SELECT 
+                    codigo_disciplina, 
+                    cpf_aluno, 
+                    data_matricula, 
+                    horario_matricula
+                FROM Matricula
+                """
+            )
+            
+            # cria uma lista contendo os itens do banco de dados
+            dados = cursor.fetchall()
+            
+            # cria o cabeçalho
+            lista_mat.write("codigo_disciplina; cpf_aluno; data_matricula; horario_matricula\n")
+            
+            # insere os dados na planilha
+            for linha in dados:
+                lista_mat.write(f"{linha[0]};{linha[1]};{linha[2]};{linha[3]}\n")
+            
+            conexao.commit()
+            conexao.close()
+            
+        return True
+    
         

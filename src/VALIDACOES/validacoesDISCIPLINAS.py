@@ -24,7 +24,7 @@ class ValidarDisciplina:
         for codigo in codigos:
             if codigo_disciplina == codigo[0]:
                 conexao.close()
-                print(f"A disciplina de código {codigo} já existe!")
+                print(f"A disciplina de código {codigo[0]} já existe!")
                 return True
         conexao.close()
         return False        

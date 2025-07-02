@@ -6,15 +6,16 @@ from DAO.disciplinasDAO import DisciplinaDao
 
 class ControleDisciplina:
     
+    #self.disciplina_dao é um atributo da classe ControleDisciplina que armazena uma instância da classe DisciplinaDao.
     
-    def __init__(self, disciplina: DisciplinaDao):
-        self.disciplina = disciplina
+    def __init__(self, disciplina_dao: DisciplinaDao):
+        self.disciplina_dao = disciplina_dao
         
-    
+        
     def cadastrar_disciplina(self, disciplina: DisciplinaModelo):
         try:
-            # detalhe que self.disciplina != disciplina
-            self.disciplina.cadastrar_disciplina_dao(disciplina)
+            # detalhe que self.disciplina_dao != disciplina
+            self.disciplina_dao.cadastrar_disciplina_dao(disciplina)
             print("Disciplina cadastrada com sucesso!")
             return True
         
@@ -25,7 +26,7 @@ class ControleDisciplina:
         
     def atualizar_disciplina(self, disciplina: DisciplinaModelo):
         
-        if self.disciplina.atualizar_disciplina_dao(disciplina):
+        if self.disciplina_dao.atualizar_disciplina_dao(disciplina):
             print("Disciplina atualizada com sucesso!")
             return True
         
@@ -36,7 +37,7 @@ class ControleDisciplina:
         
     def deletar_disciplina(self, disciplina: DisciplinaModelo):
         
-        if self.disciplina.remover_disciplina_dao(disciplina.codigo):
+        if self.disciplina_dao.remover_disciplina_dao(disciplina.codigo):
             print("Disciplina deletada com sucesso!")
             return True
         else:
@@ -45,7 +46,7 @@ class ControleDisciplina:
         
     def listar_dados(self):
         
-        if self.disciplina.listar_disciplinas_dao():
+        if self.disciplina_dao.listar_disciplinas_dao():
             print("Dados listados com sucesso!")
         
         else:

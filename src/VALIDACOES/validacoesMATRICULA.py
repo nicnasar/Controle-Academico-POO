@@ -17,7 +17,7 @@ class ValidarMatricula:
             SELECT 
                 codigo_disciplina, 
                 cpf_aluno 
-            FROM Matriculas
+            FROM Matricula
             """
         )
         
