@@ -32,13 +32,17 @@ def validar_CEP(cep):
     dados = json.loads(resposta)
 
     if dados['logradouro'] == '':
-        logradouro = input(str('Digite o seu endereço:'))
+        dados['logradouro'] = input(str('Digite o sua rua:'))
+        
     if dados['bairro'] == '':
-        bairro = input(str('Digite o seu bairro: '))
+        dados['bairro'] = input(str('Digite o seu bairro: '))
+        
     if dados['localidade'] == '':
-        cidade = input(str('Digite a sua cidade: '))
+        dados['localidade'] = input(str('Digite a sua cidade: '))
+        
     if dados['estado'] == '':
-        estado = input(str('Digite o seu estado: '))
+        dados['estado'] = input(str('Digite o seu estado: '))
+        
 
     print(dados)
     # print('Endereço',dados['logradouro'])

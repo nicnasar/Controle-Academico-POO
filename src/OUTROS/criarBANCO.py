@@ -23,7 +23,7 @@ tabelas_sqlite = [
     """CREATE TABLE IF NOT EXISTS
         Matricula (
             codigo_disciplina INTEGER NOT NULL,
-            cpf_aluno INTEGER UNIQUE NOT NULL,
+            cpf_aluno INTEGER NOT NULL,
             data_matricula TEXT NOT NULL, 
             horario_matricula TEXT NOT NULL
         );"""

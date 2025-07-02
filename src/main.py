@@ -23,7 +23,7 @@ banco = CriarBanco(nome_banco)
 # criar instância disciplina
 
 # disciplina0 = DisciplinaModelo(9, None, None, "Josias")
-# disciplina1 = DisciplinaModelo(6, "Geografia", 30, "Nikola Tesla")
+disciplina1 = DisciplinaModelo(7, "Cálculo I", 180, "Lagrange")
 
 manipular_disciplinas = ControleDisciplina(DisciplinaDao(nome_banco))
 
@@ -31,7 +31,7 @@ manipular_disciplinas = ControleDisciplina(DisciplinaDao(nome_banco))
 
 # manipular_disciplinas.deletar_disciplina(disciplina0)
 
-# manipular_disciplinas.cadastrar_disciplina(disciplina1)
+manipular_disciplinas.cadastrar_disciplina(disciplina1)
 
 manipular_disciplinas.listar_dados()
 

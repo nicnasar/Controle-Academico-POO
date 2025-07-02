@@ -16,11 +16,13 @@ class DisciplinaDao:
             
     # não permitir o usuário cadastrar alguma disciplina sem todos os campos preenchidos -- resolvido na interface
     def cadastrar_disciplina_dao(self, disciplina: DisciplinaModelo):
-        
+        # se adisciplina já existe, deve-se sair da função
         if self.validar.disciplina_existe(disciplina.codigo):
             return True
         # colocar futuramente qual o nome da disciplina
-        
+        # colocar opção para cadastrar disciplina caso retorne true
+        # "deseja cadastrar disciplina?"
+                
         conexao = sqlite3.connect(self.caminho_banco) # abre
         cursor = conexao.cursor() # cria um cursoir (francês)
         cursor.execute(
@@ -104,7 +106,11 @@ class DisciplinaDao:
             # pega os dados
             cursor.execute(
                 """
-                SELECT codigo, nome, carga_horaria, nome_professor
+                SELECT 
+                    codigo, 
+                    nome, 
+                    carga_horaria, 
+                    nome_professor
                 FROM Disciplina
                 """
             )
