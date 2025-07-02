@@ -34,15 +34,19 @@ def validar_CEP(cep):
     if dados['logradouro'] == '':
         logradouro = input(str('Digite o seu endereço:'))
     if dados['bairro'] == '':
-        bairro = input(str('Digite'))
+        bairro = input(str('Digite o seu bairro: '))
+    if dados['localidade'] == '':
+        cidade = input(str('Digite a sua cidade: '))
+    if dados['estado'] == '':
+        estado = input(str('Digite o seu estado: '))
 
     print(dados)
     # print('Endereço',dados['logradouro'])
 
     return f'{dados['logradouro']},{dados['cep']},{dados['bairro']}, {dados['localidade']},{dados['estado']}'
 
-print(validar_CEP(29070220))
-
+print(validar_CEP(95555000))
+# Exemplo de CEP que não tem logradouro registrado para teste 95555000
 """
 Preciso verificar se o cep retorna um endereço
 
