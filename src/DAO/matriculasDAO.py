@@ -70,6 +70,12 @@ class MatriculaDao:
         if not self.validar_aluno.cpf_igual(matricula.cpf_aluno):
             return False
     
+        # checar se já está matriculado
+        # se já está matriculado, retornar falso (sair)
+        if not self.validar_matricula.ja_cadastrado(matricula.codigo_disciplina, matricula.cpf_aluno):
+            return False
+        # na interface: "while(not matricular) ... if "sair": break"
+        
         conexao = sqlite3.connect(self.caminho_banco)
         cursor = conexao.cursor()
         
