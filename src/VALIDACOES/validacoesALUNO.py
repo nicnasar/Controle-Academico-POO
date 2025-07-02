@@ -1,4 +1,7 @@
 import sqlite3
+import requests
+import json
+
 from MODELOS.alunoMODELO import AlunoModelo
 
 
@@ -57,5 +60,34 @@ class ValidarAluno:
         conexao.close()
         
         return aluno
+    
+    def validar_CEP(self,cep):
+
+        if len(str(cep)) != 8:
+            print('CEP inválido.')
+
+            return False 
+
+        link = f'https://viacep.com.br/ws/{cep}/json/'
+
+        resposta = requests.get(link).text
+
+        dados = json.loads(resposta)
+
+        if dados['logradouro'] == '':
+            dados['logradouro'] = input(str('Digite a sua rua:'))
+            
+        if dados['bairro'] == '':
+            dados['bairro'] = input(str('Digite o seu bairro: '))
+            
+        if dados['localidade'] == '':
+            dados['localidade'] = input(str('Digite a sua cidade: '))
+            
+        if dados['estado'] == '':
+            dados['estado'] = input(str('Digite o seu estado: '))
+
+        print(dados)
+
+        return f'{dados['logradouro']}, {dados['cep']}, {dados['bairro']}, {dados['localidade']}, {dados['estado']}'
             
         
