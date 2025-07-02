@@ -2,7 +2,7 @@ import sqlite3
 
 #    PASTA   arqUIVO                  ClaSse
 from MODELOS.disciplinasMODELO import DisciplinaModelo
-from VALIDACOES.validacoesDISCIPLINAS import Validar
+from VALIDACOES.validacoesDISCIPLINAS import ValidarDisciplina
 
 
 class DisciplinaDao:
@@ -11,7 +11,7 @@ class DisciplinaDao:
     def __init__(self, caminho_banco):
         # função para conectar em um banco geral, sem precisar ficar escrevendo tudo toda vez
         self.caminho_banco = caminho_banco
-        self.validar = Validar(caminho_banco)
+        self.validar = ValidarDisciplina(caminho_banco)
             
             
     # não permitir o usuário cadastrar alguma disciplina sem todos os campos preenchidos -- resolvido na interface

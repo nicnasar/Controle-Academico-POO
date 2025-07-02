@@ -1,9 +1,9 @@
 
 # classes começam com letra maiúscula
 class AlunoModelo:
-    def __init__(self, nome: str, CPF: int, idade: int, email: str, endereco: str):
+    def __init__(self, nome, cpf, idade, email, endereco):
         self.nome = nome
-        self.CPF = CPF
+        self.cpf = cpf
         self.idade = idade
         self.email = email
         self.endereco = endereco

@@ -14,8 +14,6 @@ print('Endereço',dados['logradouro'])'''
 import requests
 import json
 
-
-
 def validar_CEP(cep):
 
     #cep = input(('Digite o seu CEP (sem pontuações): '))

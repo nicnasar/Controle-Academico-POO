@@ -2,7 +2,7 @@ import sqlite3
 from MODELOS.disciplinasMODELO import DisciplinaModelo
 
 
-class Validar:
+class ValidarDisciplina:
     
     
     def __init__(self, caminho_banco):
