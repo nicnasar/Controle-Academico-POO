@@ -18,7 +18,7 @@ nome_banco = "controle_academico.db"
 banco = CriarBanco(nome_banco)
 
 # consertar função cadastrar aluno
-# aluna = AlunoModelo("Victória", 16965065737, 21, "vickallas@gmail.com", 0000000)
+aluna = AlunoModelo(None, 16965065737, 31, None, 95)
 
 manipular_alunos = ControleAluno(AlunoDao(nome_banco))
 
@@ -38,12 +38,14 @@ manipular_disciplinas = ControleDisciplina(DisciplinaDao(nome_banco))
 
 # manipular_disciplinas.cadastrar_disciplina(disciplina1)
 
+manipular_alunos.deletar_aluno(aluna)
+
 # manipular_disciplinas.listar_dados()
 
-matricula = MatriculaModelo(1, 16965065737, "02/07", "11:21")
+# matricula = MatriculaModelo(1, 16965065737, "02/07", "11:21")
 
-manipular_matriculas.cancelar_matricula(matricula)
-manipular_matriculas.listar_dados_csv()
+# manipular_matriculas.cancelar_matricula(matricula)
+# manipular_matriculas.listar_dados_csv()
 
 """
 alunos = manipular_alunos.listar_alunos()

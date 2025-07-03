@@ -56,13 +56,8 @@ Preciso verificar se o cep retorna um endereço
 # teste 04 função de atualizar aluno
 
 import sqlite3
-import sys
-import os
-sys.path.append(os.path.abspath(".."))
 
 from MODELOS.alunoMODELO import AlunoModelo
-
-sys.path.append(os.path.abspath(".."))
 
 def atualizar_aluno(self, aluno: AlunoModelo): # dentro de alunoDAO
 
@@ -104,7 +99,7 @@ def atualizar_aluno(self, aluno: AlunoModelo): # dentro de alunoDAO
 
 # teste 05
 
-'''def deletar_aluno(self, cpf):
+def deletar_aluno(self, cpf):
     conexao = sqlite3.connect(self.caminho_banco)
     cursor = conexao.cursor()
 
@@ -119,5 +114,5 @@ def atualizar_aluno(self, aluno: AlunoModelo): # dentro de alunoDAO
     conexao.close()
     print("Aluno removido com sucesso!")
     return True
-'''
+
 

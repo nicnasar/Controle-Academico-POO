@@ -13,7 +13,7 @@ class AlunoDao:
         self.caminho_banco = caminho_banco
     
     
-    def inserir_aluno(self, aluno: AlunoModelo):
+    def inserir_aluno_dao(self, aluno: AlunoModelo):
         conexao = sqlite3.connect(self.caminho_banco) # abre o banco de dados
         cursor = conexao.cursor() # cria um cursor
 
@@ -41,43 +41,60 @@ class AlunoDao:
         conexao.close()
         return True
     
-    def listar_alunos(self):
+    
+    def atualizar_aluno_dao(self, aluno: AlunoModelo): # dentro de alunoDAO
+
         conexao = sqlite3.connect(self.caminho_banco)
         cursor = conexao.cursor()
-        cursor.execute("SELECT nome, cpf, idade, email, endereco FROM Aluno")
-        alunos = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM Aluno WHERE cpf = ?", (aluno.cpf,)) # mesma coisa pra verificar se tem aluno já cadastrado
+        resultado = cursor.fetchone() # lembrando que fetch one, pega UMA linha, que nesse caso é uma tupla (?)
+
+        if not resultado: # resultado recebe ou uma tupla ou None, None entra no if
+            print("Aluno não encontrado.")
+            conexao.close()
+            return False
+
+        # a tupla estará nessa ordem: resultado = ("nome", "cpf", idade, "email", "rua")
+
+        if aluno.nome is not None:
+            nome = aluno.nome
+        else:
+            nome = resultado[0]
+
+        # abaixo tem essas quatro linhas de código compactada em uma linha só
+        # nome = aluno.nome if aluno.nome is not None else resultado[0]
+        # se for none, é porque não quis atualizar o nome, nesse casso, e mantém, logo pegou do banco de dados através de resultado[0]
+
+        idade = aluno.idade if aluno.idade is not None else resultado[2]
+        email = aluno.email if aluno.email is not None else resultado[3]
+        endereco = aluno.endereco if aluno.endereco is not None else resultado[4]
+
+        cursor.execute("""
+            UPDATE Aluno SET nome = ?, idade = ?, email = ?, endereco = ?
+            WHERE cpf = ?
+        """, (nome, idade, email, endereco, aluno.cpf))
+
+        conexao.commit()
         conexao.close()
-        return alunos
+        return True
+
+
+    def deletar_aluno_dao(self, aluno: AlunoModelo):
+        conexao = sqlite3.connect(self.caminho_banco)
+        cursor = conexao.cursor()
+
+        cursor.execute("SELECT * FROM Aluno WHERE cpf = ?", (aluno.cpf,)) 
+        if not cursor.fetchone():
+            conexao.close()
+            return False
+
+        cursor.execute("DELETE FROM Aluno WHERE cpf = ?", (aluno.cpf,))
+        conexao.commit()
+        conexao.close()
+        return True
     
-    def validar_CEP(self,cep):
-
-        if len(str(cep)) != 8:
-            print('CEP inválido.')
-
-            return False 
-
-        link = f'https://viacep.com.br/ws/{cep}/json/'
-
-        resposta = requests.get(link).text
-
-        dados = json.loads(resposta)
-
-        if dados['logradouro'] == '':
-            dados['logradouro'] = input(str('Digite a sua rua:'))
-            
-        if dados['bairro'] == '':
-            dados['bairro'] = input(str('Digite o seu bairro: '))
-            
-        if dados['localidade'] == '':
-            dados['localidade'] = input(str('Digite a sua cidade: '))
-            
-        if dados['estado'] == '':
-            dados['estado'] = input(str('Digite o seu estado: '))
-
-        print(dados)
-
-        return f'{dados['logradouro']}, {dados['cep']}, {dados['bairro']}, {dados['localidade']}, {dados['estado']}'
-            
+    
 
 
 
