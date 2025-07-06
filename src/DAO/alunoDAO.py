@@ -94,6 +94,26 @@ class AlunoDao:
         conexao.close()
         return True
     
+    def buscar_aluno_por_cpf_dao(self, cpf):
+        conexao = sqlite3.connect(self.caminho_banco)
+        cursor = conexao.cursor()
+        
+        cursor.execute("SELECT nome, cpf, idade, email, endereco FROM Aluno WHERE cpf = ?", (cpf,))
+        aluno = cursor.fetchone()
+        
+        conexao.close()
+        return aluno
+    
+    def listar_alunos_dao(self):
+        conexao = sqlite3.connect(self.caminho_banco)
+        cursor = conexao.cursor()
+        
+        cursor.execute("SELECT nome, cpf, idade, email, endereco FROM Aluno")
+        alunos = cursor.fetchall()
+        
+        conexao.close()
+        return alunos
+    
     
 
 

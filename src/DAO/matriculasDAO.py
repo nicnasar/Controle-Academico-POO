@@ -79,7 +79,7 @@ class MatriculaDao:
         conexao = sqlite3.connect(self.caminho_banco)
         cursor = conexao.cursor()
         
-        cursor.execute("DELETE FROM Matricula WHERE codigo_disciplina = ?", (matricula.codigo_disciplina,))
+        cursor.execute("DELETE FROM Matricula WHERE codigo_disciplina = ? AND cpf_aluno = ?", (matricula.codigo_disciplina, matricula.cpf_aluno))
         
         conexao.commit()
         conexao.close()
@@ -120,5 +120,32 @@ class MatriculaDao:
             conexao.close()
             
         return True
-    
+
+
+    def listar_matriculas_simples_dao(self):
+        conexao = sqlite3.connect(self.caminho_banco)
+        cursor = conexao.cursor()
         
+        cursor.execute("""
+            SELECT m.codigo_disciplina, d.nome as nome_disciplina, 
+                   m.cpf_aluno, a.nome as nome_aluno,
+                   m.data_matricula, m.horario_matricula 
+            FROM Matricula m
+            LEFT JOIN Disciplina d ON m.codigo_disciplina = d.codigo
+            LEFT JOIN Aluno a ON m.cpf_aluno = a.cpf
+        """)
+        matriculas = cursor.fetchall()
+        
+        conexao.close()
+        return matriculas
+    
+    def verificar_matricula_existente_dao(self, codigo_disciplina, cpf_aluno):
+        conexao = sqlite3.connect(self.caminho_banco)
+        cursor = conexao.cursor()
+        
+        cursor.execute("SELECT * FROM Matricula WHERE codigo_disciplina = ? AND cpf_aluno = ?", 
+                      (codigo_disciplina, cpf_aluno))
+        existe = cursor.fetchone()
+        
+        conexao.close()
+        return existe is not None    

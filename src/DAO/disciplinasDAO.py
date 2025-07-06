@@ -130,3 +130,23 @@ class DisciplinaDao:
             
         return True
     
+
+    def buscar_disciplina_por_codigo_dao(self, codigo):
+        conexao = sqlite3.connect(self.caminho_banco)
+        cursor = conexao.cursor()
+        
+        cursor.execute("SELECT codigo, nome, carga_horaria, nome_professor FROM Disciplina WHERE codigo = ?", (codigo,))
+        disciplina = cursor.fetchone()
+        
+        conexao.close()
+        return disciplina
+    
+    def listar_disciplinas_simples_dao(self):
+        conexao = sqlite3.connect(self.caminho_banco)
+        cursor = conexao.cursor()
+        
+        cursor.execute("SELECT codigo, nome, carga_horaria, nome_professor FROM Disciplina")
+        disciplinas = cursor.fetchall()
+        
+        conexao.close()
+        return disciplinas
