@@ -39,3 +39,19 @@ class ControleAluno:
     
     def listar_alunos(self):
         pass
+
+    
+    def buscar_aluno_por_cpf(self, cpf):
+        try:
+            return self.aluno.buscar_aluno_por_cpf_dao(cpf)
+        except Exception as e:
+            print(f"Erro ao buscar aluno: {e}")
+            return None
+    
+    
+    def listar_todos_alunos(self):
+        try:
+            return self.aluno.listar_alunos_dao()
+        except Exception as e:
+            print(f"Erro ao listar alunos: {e}")
+            return []

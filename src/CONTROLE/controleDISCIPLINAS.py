@@ -44,6 +44,7 @@ class ControleDisciplina:
             print("Erro ao deletar disciplina.")
             return False
         
+        
     def listar_dados(self):
         
         if self.disciplina_dao.listar_disciplinas_dao():
@@ -51,3 +52,19 @@ class ControleDisciplina:
         
         else:
             print("Erro ao listar os dados.")
+
+    
+    def buscar_disciplina_por_codigo(self, codigo):
+        try:
+            return self.disciplina_dao.buscar_disciplina_por_codigo_dao(codigo)
+        except Exception as e:
+            print(f"Erro ao buscar disciplina: {e}")
+            return None
+    
+   
+    def listar_todas_disciplinas(self):
+        try:
+            return self.disciplina_dao.listar_disciplinas_simples_dao()
+        except Exception as e:
+            print(f"Erro ao listar disciplinas: {e}")
+            return []

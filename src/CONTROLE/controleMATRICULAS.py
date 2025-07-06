@@ -40,3 +40,19 @@ class ControleMatricula:
         else:
             print("Erro ao exportar matrículas.")
             return False
+        
+    
+    def listar_todas_matriculas(self):
+        try:
+            return self.matricula_dao.listar_matriculas_simples_dao()
+        except Exception as e:
+            print(f"Erro ao listar matrículas: {e}")
+            return []
+    
+    
+    def verificar_matricula_existe(self, codigo_disciplina, cpf_aluno):
+        try:
+            return self.matricula_dao.verificar_matricula_existente_dao(codigo_disciplina, cpf_aluno)
+        except Exception as e:
+            print(f"Erro ao verificar matrícula: {e}")
+            return False
