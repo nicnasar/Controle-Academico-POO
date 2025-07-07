@@ -1,4 +1,6 @@
 # Barbára Lima
+# Nicolas Nasário
+# Victória Kallas
 
 import streamlit as st
 import pandas as pd

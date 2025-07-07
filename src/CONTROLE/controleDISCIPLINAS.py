@@ -1,3 +1,7 @@
+# Barbára Lima
+# Nicolas Nasário
+# Victória Kallas
+
 from MODELOS.disciplinasMODELO import DisciplinaModelo
 from DAO.disciplinasDAO import DisciplinaDao
 

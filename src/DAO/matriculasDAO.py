@@ -1,3 +1,7 @@
+# Barbára Lima
+# Nicolas Nasário
+# Victória Kallas
+
 import sqlite3
 
 from MODELOS.matriculasMODELO import MatriculaModelo

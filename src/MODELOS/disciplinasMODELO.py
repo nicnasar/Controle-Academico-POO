@@ -1,3 +1,6 @@
+# Barbára Lima
+# Nicolas Nasário
+# Victória Kallas
 
 # classes começam com letra maiúscula
 class DisciplinaModelo:

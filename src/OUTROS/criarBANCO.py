@@ -1,3 +1,7 @@
+# Barbára Lima
+# Nicolas Nasário
+# Victória Kallas
+
 import sqlite3
 
 # com base em https://www.sqlitetutorial.net/sqlite-python/creating-tables/

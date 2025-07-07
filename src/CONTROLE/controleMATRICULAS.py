@@ -1,3 +1,7 @@
+# Barbára Lima
+# Nicolas Nasário
+# Victória Kallas
+
 from MODELOS.matriculasMODELO import MatriculaModelo
 from DAO.matriculasDAO import MatriculaDao
 

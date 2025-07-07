@@ -1,3 +1,7 @@
+# Barbára Lima
+# Nicolas Nasário
+# Victória Kallas
+
 from MODELOS.alunoMODELO import AlunoModelo
 # da pasta MODELOS, importar do arquivo alunoMODELO a classe AlunoModelo
 from DAO.alunoDAO import AlunoDao
