@@ -25,8 +25,8 @@ instalar as bibliotecas no venv
 ### 4. Rode o sistema principal:
 `python src/main.py`
 
-### 5. (Se for usar a interface web):
-`streamlit run src/interface/interface_web.py`
+### 5. (Se for usar a interface):
+`streamlit run src/interface/Dashboard.py`
 
 > Repita os passos 1, 2, 4 e 5 toda vez que for rodar o projeto em uma nova sessão.
 
